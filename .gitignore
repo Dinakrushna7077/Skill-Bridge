@@ -1,5 +1,68 @@
-**/.vs/
+# ==========================================
+# .NET Core / ASP.NET
+# ==========================================
+
+# Build output
 **/bin/
 **/obj/
+
+# Visual Studio
+**/.vs/
+
+# Visual Studio user files
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
+
+# .NET generated files
+*.dll
+*.pdb
+
+# NuGet
+*.nupkg
+**/packages/
+
+# Logs
+*.log
+
+
+# ==========================================
+# Angular
+# ==========================================
+
+# Dependencies
+**/node_modules/
+
+# Angular build output
+**/dist/
+**/.angular/
+
+# Angular cache
+**/.cache/
+
+# Environment files
+**/environment*.local.ts
+
+
+# ==========================================
+# OS files
+# ==========================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+
+# ==========================================
+# IDE / Editor
+# ==========================================
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json
