@@ -1,4 +1,4 @@
-﻿namespace Skill_Bridge_API.Models.DTOs
+﻿namespace Skill_Bridge_API.Models.DTOs.Auth
 {
     public class LoginResponseDTO
     {

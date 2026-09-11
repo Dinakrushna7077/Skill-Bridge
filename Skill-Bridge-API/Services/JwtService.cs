@@ -1,9 +1,9 @@
 ﻿using Skill_Bridge_API;
-using Skill_Bridge_API.Models.DTOs;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Skill_Bridge_API.Models.DTOs.Auth;
 
 namespace Skill_Bridge_API.Services
 {
