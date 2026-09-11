@@ -15,10 +15,4 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
 </Project>

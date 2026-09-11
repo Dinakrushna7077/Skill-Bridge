@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Skill_Bridge_API.Repository;
+using Skill_Bridge_API.Repository.Interfaces;
 using Skill_Bridge_API.Services;
+using Skill_Bridge_API.Services.Interfaces;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<JwtService>();
@@ -17,8 +21,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     ValidAudience = builder.Configuration["Jwt:Audience"],
     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
 });
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddAuthorization();
-//CORs
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
@@ -40,6 +45,6 @@ app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapControllers();
 app.Run();
 
