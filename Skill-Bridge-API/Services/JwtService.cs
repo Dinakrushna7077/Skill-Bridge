@@ -14,13 +14,13 @@ namespace Skill_Bridge_API.Services
         {
             _config = config;
         }
-        public string GenerateToken(UserDTO user)
+        public string GenerateToken(LoginResponseDTO user)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
-                new Claim(ClaimTypes.Name,user.UserName),
-                new Claim(ClaimTypes.Email,user.UserEmail),
+                new Claim(ClaimTypes.Name,user.Name),
+                new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.Role,user.Role)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
@@ -31,7 +31,7 @@ namespace Skill_Bridge_API.Services
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(Convert.ToDouble(_config["Jwt:ExpiryDay"])),
+                expires: DateTime.UtcNow.AddDays(Convert.ToDouble(_config["Jwt:ExpiresInDays"])),
                 signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
