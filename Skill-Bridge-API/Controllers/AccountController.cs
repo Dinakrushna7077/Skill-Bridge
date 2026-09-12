@@ -22,10 +22,9 @@ namespace Skill_Bridge_API.Controllers
             var response = await _service.LoginAsync(data);
             if (!response.Success)
             {
-                return Unauthorized(response.Message);
+                return Unauthorized(response);
             }
-            var loginResponse = response.Data;
-            return Ok(loginResponse);
+            return Ok(response);
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequestDTO dto)
@@ -33,9 +32,9 @@ namespace Skill_Bridge_API.Controllers
             var response = await _service.RegisterAsync(dto);
             if (!response.Success)
             {
-                return BadRequest(response.Message);
+                return BadRequest(response);
             }
-            return Ok(response.Message);
+            return Ok(response);
         }
     }
 }

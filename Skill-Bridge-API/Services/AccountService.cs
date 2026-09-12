@@ -1,8 +1,7 @@
-﻿
-
-using Skill_Bridge_API.Repository.Interfaces;
+﻿using Skill_Bridge_API.Repository.Interfaces;
 using Skill_Bridge_API.Models.DTOs.Auth;
 using Skill_Bridge_API.Services.Interfaces;
+using Skill_Bridge_API.Models.DTOs.Shared;
 
 namespace Skill_Bridge_API.Services
 {
@@ -16,48 +15,58 @@ namespace Skill_Bridge_API.Services
             _jwt=jwt;
         }
 
-        public async Task<(LoginResponseDTO Data, bool Success, string Message)> LoginAsync(LoginRequestDTO data)
+        public async Task<ApiResponseDTO<LoginResponseDTO>> LoginAsync(LoginRequestDTO data)
         {
-            LoginResponseDTO response = new LoginResponseDTO();
+            ApiResponseDTO<LoginResponseDTO> apiResponse = new ApiResponseDTO<LoginResponseDTO>();
             var user = await _repo.GetUserByEmail(data.Email);
             if (user == null)
             {
-                return (response, false, "Invalid Email Id");
+                apiResponse.Message = "Invalid Email Id";
+                return apiResponse;
             }
             if (!user.IsActive)
             {
-                return (response, false, "Your account is inactive");
+                apiResponse.Message = "Your account is inactive";
+                return apiResponse;
             }
             var isValidPass = BCrypt.Net.BCrypt.Verify(data.Password, user.PasswordHash);
             if (!isValidPass)
             {
-                return (response, false, "Invalid Password...");
+                apiResponse.Message = "Invalid Password";
+                return apiResponse;
             }
-            return (new LoginResponseDTO()
-            {
-                Name = user.Name,
-                Email = user.Email,
-                UserId = user.UserId,
-                Role = user.Role,
-                Token=_jwt.GenerateToken(response)
-            },
-            true,
-            "");
+             var userData=new LoginResponseDTO()
+             {
+                 UserId = user.UserId,
+                 Name = user.Name,
+                 Email = user.Email,
+                 Role = user.Role
+             };
+            userData.Token = _jwt.GenerateToken(userData);
+            apiResponse.Data = userData;
+            apiResponse.Success = true;
+            apiResponse.Message = "Login Success";
+            return apiResponse;
         }
-        public async Task<(bool Success, string Message)> RegisterAsync(RegisterRequestDTO dto)
+        public async Task<ApiResponseDTO<object>> RegisterAsync(RegisterRequestDTO dto)
         {
             dto.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
             var user = await _repo.GetUserByEmail(dto.Email);
+            ApiResponseDTO<object> response=new ApiResponseDTO<object>();
             if (user != null)
             {
-                return (false, "Email id already registered ! please login...");
+                response.Message = "Email id already registered ! please login...";
+                return response;
             }
             int n = await _repo.RegisterUser(dto);
             if (n <= 0)
             {
-                return (false, "Unable to Registered ! Please try again after some time...");
+                response.Message = "Unable to Registered ! Please try again after some time...";
+                return response;
             }
-            return (true, "User Registered Successfully");
+            response.Success = true;
+            response.Message = "User Registered Successfully";
+            return response;
         }
     }
 }
