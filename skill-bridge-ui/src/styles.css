@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+ /* SkillBridge global styles.
+   Bootstrap 5 does the layout work; this file only sets the palette, the
+   type scale and a few shared surfaces so screens stay consistent. */
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  /* Deep forest green — a deliberate step away from the default recruiting-portal blue. */
+  --sb-ink: #1c2f41;
+  --sb-accent: #e3e6eb;
+  --sb-canvas: #f6f8f6;
+  --sb-line: #e3e8e4;
+
+  --bs-body-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --bs-body-color: #1d2521;
+  --bs-body-bg: var(--sb-canvas);
+  --bs-success: #1b7a4b;
+  --bs-success-rgb: 27, 122, 75;
+  --bs-border-color: var(--sb-line);
+}
+
+body {
+  font-size: 0.95rem;
+  letter-spacing: -0.003em;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.015em;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.btn-success {
+  --bs-btn-bg: #1b7a4b;
+  --bs-btn-border-color: #1b7a4b;
+  --bs-btn-hover-bg: #15613c;
+  --bs-btn-hover-border-color: #15613c;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.6rem 0.5rem;
+}
+
+.progress {
+  background-color: #e8ece9;
+}
+
+/* Keyboard focus stays visible everywhere, including on custom surfaces. */
+:focus-visible {
+  outline: 2px solid var(--sb-ink);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
