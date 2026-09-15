@@ -101,34 +101,34 @@ export class MockDataService {
     {
       StudentId: 1, UserId: 1, CollegeId: 1, DepartmentId: 1, RollNo: 'REC-MCA-0114',
       GraduationYear: 2026, CGPA: 8.6, CareerGoalId: 1,
-      ResumeUrl: 'https://files.skillbridge.in/resume/ananya.pdf',
-      GithubUrl: 'https://github.com/ananya-m',
-      LinkedInUrl: 'https://linkedin.com/in/ananya-mohapatra'
+      ResumeUrl: 'https://dinakrushna7077.github.io/Dinakrushna-Portfolio/resume.html',
+      GithubUrl: 'https://github.com/Dinakrushna7077',
+      LinkedInUrl: 'https://www.linkedin.com/in/dinakrushna7077/'
     },
     {
       StudentId: 2, UserId: 2, CollegeId: 1, DepartmentId: 2, RollNo: 'REC-MCA-0237',
       GraduationYear: 2026, CGPA: 7.9, CareerGoalId: 2,
-      ResumeUrl: 'https://files.skillbridge.in/resume/rohit.pdf',
-      GithubUrl: 'https://github.com/rohit-p', LinkedInUrl: null
+      ResumeUrl: 'https://dinakrushna7077.github.io/Dinakrushna-Portfolio/resume.html',
+      GithubUrl: 'https://github.com/Dinakrushna7077', LinkedInUrl: null
     },
     {
       StudentId: 3, UserId: 3, CollegeId: 2, DepartmentId: 3, RollNo: 'SIT-CSE-0088',
       GraduationYear: 2027, CGPA: 9.1, CareerGoalId: 3,
-      ResumeUrl: 'https://files.skillbridge.in/resume/meera.pdf',
-      GithubUrl: 'https://github.com/meera-sahu',
-      LinkedInUrl: 'https://linkedin.com/in/meera-sahu'
+      ResumeUrl: 'https://dinakrushna7077.github.io/Dinakrushna-Portfolio/resume.html',
+      GithubUrl: 'https://github.com/Dinakrushna7077',
+      LinkedInUrl: 'https://www.linkedin.com/in/dinakrushna7077/'
     },
     {
       StudentId: 4, UserId: 4, CollegeId: 2, DepartmentId: 4, RollNo: 'SIT/ECE/22/0352',
       GraduationYear: 2026, CGPA: 8.2, CareerGoalId: 4,
-      ResumeUrl: null, GithubUrl: 'https://github.com/debasis-n', LinkedInUrl: null
+      ResumeUrl: null, GithubUrl: 'https://github.com/Dinakrushna7077', LinkedInUrl: null
     },
     {
       StudentId: 5, UserId: 5, CollegeId: 3, DepartmentId: 5, RollNo: 'VSSUT/CSE/22/0031',
       GraduationYear: 2026, CGPA: 8.8, CareerGoalId: 1,
-      ResumeUrl: 'https://files.skillbridge.in/resume/priya.pdf',
-      GithubUrl: 'https://github.com/priya-jena',
-      LinkedInUrl: 'https://linkedin.com/in/priya-jena'
+      ResumeUrl: 'https://dinakrushna7077.github.io/Dinakrushna-Portfolio/resume.html',
+      GithubUrl: 'https://github.com/Dinakrushna7077',
+      LinkedInUrl: 'https://www.linkedin.com/in/dinakrushna7077/'
     }
   ]);
 
