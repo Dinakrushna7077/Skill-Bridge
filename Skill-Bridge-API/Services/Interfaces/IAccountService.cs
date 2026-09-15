@@ -1,11 +1,12 @@
 ﻿using Skill_Bridge_API.Models.DTOs.Auth;
+using Skill_Bridge_API.Models.DTOs.Shared;
 
 namespace Skill_Bridge_API.Services.Interfaces
 {
     public interface IAccountService
     {
-        Task<(LoginResponseDTO Data, bool Success, string Message)> LoginAsync(LoginRequestDTO data);
-        Task<(bool Success, string Message)> RegisterAsync(RegisterRequestDTO dto);
+        Task<ApiResponseDTO<LoginResponseDTO>> LoginAsync(LoginRequestDTO data);
+        Task<ApiResponseDTO<object>> RegisterAsync(RegisterRequestDTO dto);
 
     }
 }
