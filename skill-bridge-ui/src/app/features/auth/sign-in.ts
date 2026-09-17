@@ -29,10 +29,10 @@ interface DemoAccount {
             </div>
           </div>
 
-          <h1 class="h4 mb-1">Login</h1>
-          <p class="text-secondary small mb-4">
+          <h1 class="h4 mb-1 text-center">Login</h1>
+          <!-- <p class="text-secondary small mb-4">
             Use one of the demo accounts below. Any password works while the API is mocked.
-          </p>
+          </p> -->
 
           @if (error()) {
             <div class="alert alert-danger py-2 small" role="alert">{{ error() }}</div>
