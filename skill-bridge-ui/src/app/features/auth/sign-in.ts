@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 
 import { AuthService } from '../../core/services/auth.service';
 
@@ -15,7 +15,7 @@ interface DemoAccount {
 @Component({
   selector: 'sb-sign-in',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="sb-auth">
@@ -29,7 +29,7 @@ interface DemoAccount {
             </div>
           </div>
 
-          <h1 class="h4 mb-1">Sign in</h1>
+          <h1 class="h4 mb-1">Login in</h1>
           <p class="text-secondary small mb-4">
             Use one of the demo accounts below. Any password works while the API is mocked.
           </p>
@@ -62,7 +62,13 @@ interface DemoAccount {
             />
           </div>
 
-          <button class="btn btn-success w-100" type="button" (click)="submit()">Sign in</button>
+          <button class="btn btn-brand w-100" type="button" (click)="submit()">Login</button>
+          <div class="text-center pt-2 border-top">
+            <span class="small text-secondary">New student to SkillBridge? </span>
+            <a routerLink="/sign-up" class="small fw-semibold text-decoration-none">
+              Create an account <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -88,6 +94,25 @@ interface DemoAccount {
   `,
   styles: [
     `
+    .btn-brand {
+        background-color: #3b72a6 !important;
+        border-color: #2f5170 !important;
+        color: #ffffff !important;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+
+      .btn-brand:hover,
+      .btn-brand:focus {
+        background-color: #2f4d6b !important;
+        border-color: #142230 !important;
+        color: #ffffff !important;
+      }
+
+      .btn-brand:active {
+        background-color: #264b75 !important;
+        border-color: #0e1721 !important;
+        transform: scale(0.99);
+      }
       .sb-auth {
         min-height: 100vh;
         display: grid;
@@ -164,14 +189,14 @@ export class SignIn {
     {
       role: 'Industry',
       name: 'Infosys PVT LTD',
-      email: 'kavita@infosys.support.gmail.com',
+      email: 'kavita@infosys.support.com',
       blurb: 'Hiring .NET and Angular engineers at Beacon Systems',
       icon: 'bi-building'
     },
     {
       role: 'Academician',
       name: 'PROF. RAJESWARI CHHUALSINGH',
-      email: 'rajeswari.rec@.gmail.com',
+      email: 'rajeswari.rec@gmail.com',
       blurb: 'Verifies student skills for CSE and IT at CET',
       icon: 'bi-patch-check'
     },

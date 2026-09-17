@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
 
 import { authGuard, homeRedirectGuard, roleGuard } from './core/guards/role.guard';
+import { SignUp } from './features/auth/sign-up';
 
 /**
  * Every feature screen is lazily loaded. The dashboard shell is loaded once
  * and stays mounted, so moving between screens only fetches the leaf chunk.
  */
 export const routes: Routes = [
+  { path: 'sign-up', component: SignUp },
   {
     path: 'sign-in',
     title: 'Sign in · SkillBridge',
@@ -16,6 +18,16 @@ export const routes: Routes = [
       });
     }
   },
+    {
+    path: 'sign-in',
+    title: 'Sign in · SkillBridge',
+    loadComponent: function () {
+      return import('./features/auth/sign-in').then(function (m) {
+        return m.SignIn;
+      });
+    }
+  },
+  
   {
     path: '',
     canActivate: [authGuard],

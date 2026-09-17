@@ -53,16 +53,17 @@ export class MockDataService {
 
   private readonly users = signal<User[]>([
     this.user(1, 'Dinakrushna Mohanta', 'dinakrushna@gmail.com', '9861000101', 'Student'),
-    this.user(2, 'Subhalaxmi Beuria', 'subhalaxmi@gmail.com', '9861000102', 'Student'),
+    this.user(2, 'Monalisha das', 'monalisha@gmail.com', '9861000105', 'Student'),
     this.user(3, 'Debasmita muduli', 'debasmita@gmail.com', '9861000103', 'Student'),
-    this.user(4, 'Shrabani pahi ', 'shrabani@gmail.com', '9861000104', 'Student'),
-    this.user(5, 'Monalisha das', 'monalisha@gmail.com', '9861000105', 'Student'),
+    this.user(4, 'Shrabani pahi', 'shrabani@gmail.com', '9861000104', 'Student'),
+    this.user(5, 'Subhalaxmi Beuria', 'subhalaxmi@gmail.com', '9861000102', 'Student'),
     this.user(6, 'Shradhanjali satapathy', 'shradhanjali@gmail.com', '9861000106', 'Student'),
-    this.user(7, 'PROF. Styaranjan Mishra', 'styaranjan@rec.gmail.com', '9861000201', 'Academician'),
-    this.user(8, 'PROF. RAJESWARI CHHUALSINGH', 'rajeswari.rec@.gmail.com', '9861000202', 'Academician'),
-    this.user(9, 'Kavita Rath', 'kavita@infosys.support.gmail.com', '9861000301', 'Industry'),
+    this.user(7, 'PROF. RAJESWARI CHHUALSINGH', 'rajeswari.rec@gmail.com', '9861000202', 'Academician'), // Fixed email
+    this.user(8, 'PROF. Styaranjan Mishra', 'styaranjan@rec.gmail.com', '9861000201', 'Academician'),
+    this.user(9, 'Kavita Rath', 'kavita@infosys.support.com', '9861000301', 'Industry'),
     this.user(10, 'Nikhil Yadav', 'nikhil@tcs.support.com', '9861000302', 'Industry'),
-    this.user(11, 'Admin User', 'admin.skillbridge@gmail.com', '9861000401', 'Admin')
+    this.user(11, 'Arun Verma', 'arun@loopinteractive.dev', '9861000303', 'Industry'),                  // Added Loop rep
+    this.user(12, 'Admin User', 'admin.skillbridge@gmail.com', '9861000401', 'Admin')                  // Moved Admin to 12
   ]);
 
   private readonly colleges = signal<College[]>([
@@ -129,17 +130,24 @@ export class MockDataService {
       ResumeUrl: 'https://dinakrushna7077.github.io/Dinakrushna-Portfolio/resume.html',
       GithubUrl: 'https://github.com/Dinakrushna7077',
       LinkedInUrl: 'https://www.linkedin.com/in/dinakrushna7077/'
+    },
+    {
+      StudentId: 6, UserId: 6, CollegeId: 1, DepartmentId: 1, RollNo: 'REC-MCA-0125',
+      GraduationYear: 2026, CGPA: 8.4, CareerGoalId: 2,
+      ResumeUrl: null,
+      GithubUrl: 'https://github.com/Dinakrushna7077',
+      LinkedInUrl: null
     }
   ]);
 
   private readonly academicians = signal<Academician[]>([
     {
-      AcademicianId: 1, UserId: 8, CollegeId: 1, DepartmentId: 1,
+      AcademicianId: 1, UserId: 7, CollegeId: 1, DepartmentId: 1,
       Designation: 'Professor & Head',
       Expertise: 'Software Engineering, Web Technologies, Training & Placement'
     },
     {
-      AcademicianId: 2, UserId: 9, CollegeId: 2, DepartmentId: 3,
+      AcademicianId: 2, UserId: 8, CollegeId: 2, DepartmentId: 3,
       Designation: 'Associate Professor',
       Expertise: 'Distributed Systems, Cloud Computing, DevOps'
     }
@@ -150,25 +158,19 @@ export class MockDataService {
       IndustryId: 1, UserId: 9, CompanyName: 'Infosys PVT LTD',
       IndustryType: 'Enterprise Software (.NET)', Location: 'Bhubaneswar, Odisha',
       Website: 'https://infosys.com',
-      Description:
-        'Builds ERP and claims-processing platforms on ASP.NET Core and SQL Server for ' +
-        'insurance and logistics clients.'
+      Description: 'Builds ERP and claims-processing platforms on ASP.NET Core and SQL Server.'
     },
     {
       IndustryId: 2, UserId: 10, CompanyName: 'Tata Consultancy Services',
       IndustryType: 'Cloud & DevOps Consulting', Location: 'Hyderabad, Telangana',
       Website: 'https://tcs.com',
-      Description:
-        'Moves monolithic .NET applications onto Azure, containerises them and sets up ' +
-        'delivery pipelines for mid-size product teams.'
+      Description: 'Moves monolithic .NET applications onto Azure.'
     },
     {
       IndustryId: 3, UserId: 11, CompanyName: 'Loop Interactive',
       IndustryType: 'Product & Frontend Studio', Location: 'Bengaluru, Karnataka',
       Website: 'https://loopinteractive.dev',
-      Description:
-        'A product studio shipping Angular and React front ends for fintech and health-tech ' +
-        'companies across India and Singapore.'
+      Description: 'A product studio shipping Angular and React front ends.'
     }
   ]);
 
@@ -424,7 +426,7 @@ export class MockDataService {
       IsRead: true, CreatedAt: '2026-09-10T09:00:00Z'
     },
     {
-      NotificationId: 6, UserId: 11, Title: 'Placement figures updated',
+      NotificationId: 6, UserId: 7, Title: 'Placement figures updated',
       Message: 'September numbers are in for all three partner institutions.',
       IsRead: false, CreatedAt: '2026-09-14T03:20:00Z'
     }
@@ -1214,5 +1216,86 @@ export class MockDataService {
   /** Wraps a value as a delayed observable so components behave as they would against a real API. */
   private feed<T>(value: T): Observable<T> {
     return of(value).pipe(delay(LATENCY));
+  }
+
+  registerStudent(payload: {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  collegeId: number;
+  departmentId: number;
+  rollNo: string;
+  graduationYear: number;
+  cgpa: number;
+  careerGoalId: number | null;
+  githubUrl: string | null;
+  linkedInUrl: string | null;
+}): { ok: boolean; message: string; user?: User } {
+  var self = this;
+  var emailClean = payload.email.trim().toLowerCase();
+
+  var existing = this.users().find(function (u: User): boolean {
+    return u.Email.toLowerCase() === emailClean;
+  });
+
+  if (existing) {
+    return { ok: false, message: 'An account with this email already exists.' };
+  }
+
+  var nextUserId = this.users().reduce(function (max: number, u: User): number {
+    return Math.max(max, u.UserId);
+  }, 0) + 1;
+
+  var newUser: User = {
+    UserId: nextUserId,
+    Name: payload.name.trim(),
+    Email: emailClean,
+    PhoneNumber: payload.phoneNumber ? payload.phoneNumber.trim() : '',
+    PasswordHash: '$2b$10$mockedregistrationhashforlocaldev',
+    Role: 'Student',
+    IsActive: true,
+    CreatedAt: new Date().toISOString(),
+    UpdatedAt: ''
+  };
+
+  var nextStudentId = this.students().reduce(function (max: number, s: Student): number {
+    return Math.max(max, s.StudentId);
+  }, 0) + 1;
+
+  var newStudent: Student = {
+    StudentId: nextStudentId,
+    UserId: nextUserId,
+    CollegeId: payload.collegeId,
+    DepartmentId: payload.departmentId,
+    RollNo: payload.rollNo.trim(),
+    GraduationYear: payload.graduationYear,
+    CGPA: payload.cgpa,
+    CareerGoalId: payload.careerGoalId,
+    ResumeUrl: null,
+    GithubUrl: payload.githubUrl ? payload.githubUrl.trim() : null,
+    LinkedInUrl: payload.linkedInUrl ? payload.linkedInUrl.trim() : null
+  };
+
+  this.users.update(function (rows: User[]): User[] {
+    return rows.concat([newUser]);
+  });
+
+  this.students.update(function (rows: Student[]): Student[] {
+    return rows.concat([newStudent]);
+  });
+
+  return { ok: true, message: 'Account registered successfully.', user: newUser };
+}
+
+addUser(user: User): void {
+    this.users.update(function (rows: User[]): User[] {
+      return rows.concat([user]);
+    });
+  }
+
+  addStudent(student: Student): void {
+    this.students.update(function (rows: Student[]): Student[] {
+      return rows.concat([student]);
+    });
   }
 }
