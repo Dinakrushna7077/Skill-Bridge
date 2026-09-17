@@ -29,7 +29,7 @@ interface DemoAccount {
             </div>
           </div>
 
-          <h1 class="h4 mb-1">Login in</h1>
+          <h1 class="h4 mb-1">Login</h1>
           <p class="text-secondary small mb-4">
             Use one of the demo accounts below. Any password works while the API is mocked.
           </p>
